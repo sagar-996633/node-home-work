@@ -12,3 +12,4 @@ module.exports.Jewelry=require("./jewelry.model");
 module.exports.Movie=require("./movie.model");
 module.exports.Music=require("./music.model");
 module.exports.grocery=require("./grocery.model");
+module.exports.mobile=require("./mobile.model");
