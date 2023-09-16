@@ -34,19 +34,6 @@ router.use("/grocery", groceryRoute);
 
 module.exports = router;
 
-router.use("/user", userRoute);
-router.use("/category", categoryRoute);
-router.use("/product", productRoute);
-router.use("/book",bookRoute)
-router.use("/bus", busRoute);
-router.use("/hotel",hotelRoute);
-router.use("/stationery",stationeryRoute);
-router.use('/school',schoolRoute);
-router.use("/travel", travelRoute);
-router.use("/pharmacy", pharmacyRoute);
-router.use("/jewelry", jewelryRoute);
-router.use("/movie", movieRoute);
-router.use("/music", musicRoute);
-router.use("/grocery", groceryRoute);
+
 
 
