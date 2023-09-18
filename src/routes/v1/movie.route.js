@@ -1,32 +1,36 @@
 const express = require("express");
-const {movieValidation}=require("../../validations");
-const {movieController}=require("../../controllers");
+const { Moviecontroller } = require("../../controllers");
 
-const router=express.Router();
+const router = express.Router();
 
+/** Create Movie */
 router.post(
     "/create-movie",
-    movieController.createMovie
-)
+    Moviecontroller.createMovie
+);
 
+/** Get Movie */
 router.get(
     "/list",
-    movieController.getMovieList
-)
+    Moviecontroller.Movielist
+);
 
+/** Get Movie details by id */
 router.get(
-    "/get-details/:movieId",
-    movieController.getMovieDetails
-  );
-  
-  router.put(
-    "/update-details/:movieId",
-    movieController.updateDetails
-  );
+    "/get-details/:MovieId",
+    Moviecontroller.getMovieDetails
+);
 
+/** update Movie */
+router.put(
+    "/update-Movie/:MovieId",
+    Moviecontroller.updateMovie
+);
+
+/** Delete Movie */
 router.delete(
-    "/delete-movie/:movieId",
-    movieController.deleteMovieById,
-)
+    "/Delete/:MovieId",
+    Moviecontroller.deleteMovie
+);
 
-module.exports=router;
+module.exports = router;

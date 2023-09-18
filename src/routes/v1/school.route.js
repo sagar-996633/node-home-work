@@ -1,32 +1,36 @@
-const express=require("express");
-const { schoolValidation}=require("../../validations")
-const {schoolController}=require("../../controllers")
+const express = require("express");
+const { Schoolcontroller } = require("../../controllers");
 
-const router=express.Router();
+const router = express.Router();
 
+/** Create School */
 router.post(
-    "/create-school",
-    schoolController.createSchool
-)
+    "/create-School",
+    Schoolcontroller.createSchool
+);
 
+/** Get School */
 router.get(
     "/list",
-    schoolController.getSchoolList
-)
+    Schoolcontroller.Schoollist
+);
 
+/** Get School details by id */
 router.get(
-    "/get-details/:schoolId",
-    schoolController.getSchoolDetails
-  );
-  
-  router.put(
-    "/update-details/:schoolId",
-    schoolController.updateDetails
-  );
+    "/get-details/:SchoolId",
+    Schoolcontroller.getSchoolDetails
+);
 
+/** update School */
+router.put(
+    "/update-School/:SchoolId",
+    Schoolcontroller.updateSchool
+);
+
+/** Delete School */
 router.delete(
-       "/delete-school/:schoolId",
-    schoolController.deleteSchool
-)
+    "/Delete/:SchoolId",
+    Schoolcontroller.deleteSchool
+);
 
-module.exports=router;
+module.exports = router;

@@ -1,36 +1,37 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const grocerySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true
-  },
-  category: {
-    type: String,
-    trim: true
-  },
-  price: {
-    type: Number,
-    trim: true
-  },
-  quantity: {
-    type: Number,
-    trim: true
-  },
-  category:{
-    type:mongoose.Types.ObjectId,
-    ref:"Category"
-  },
-  is_active: {
-    type: Boolean,
-    default: true,
-  },
-},
-{
-  timestamps: true,
-  versionKey: false,
-});
+const GrocerySchema = new mongoose.Schema(
+    {
+        Store_Name: {
+            type: String,
+            trim: true,
+        },
+        Buyer_Name: {
+            type: String,
+            trim: true,
+        },
+        Phone_Number: {
+            type: Number,
+            trim: true,
+        },
+        Totle_Product: {
+            type: Number,
+            trim: true,
+        },
+        Totle_Price: {
+            type: Number,
+            trim: true,
+        },
+        category: {
+            type: mongoose.Types.ObjectId,
+            ref: "category"
+        },
+    },
+    {
+        timestamps: true,
+        versionKey: false,
+    }
+);
 
-const Grocery = mongoose.model('Grocery', grocerySchema);
-
-module.exports = Grocery;
+const Grocery = mongoose.model("Grocery", GrocerySchema)
+module.exports = Grocery

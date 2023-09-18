@@ -1,26 +1,32 @@
-const { Bus}=require("../models");
+const { Bus } = require("../models");
 
-const createBus=async(reqBody)=>{
-    return Bus.create(reqBody)
+/**
+ * create Bus
+ * @param {object}reqBody
+ * @returns {Promise<Bus>}
+*/
+
+const createBus = async (reqBody) => {
+    return Bus.create(reqBody);
+};
+
+const getBuslist = async (req, res) => {
+    return Bus.find({ $or: [{ Ticket_price: "1200" }] });
 }
 
-const getBuslist=async(req, res)=>{
-    return Bus.find({$or:[{is_active:true}]});
+const getBusById = async (BusId) => {
+    return Bus.findById(BusId);
+};
+
+const updateDetails = async (BusId, updateBody) => {
+    return Bus.findByIdAndUpdate(BusId, { $set: updateBody });
+};
+
+const deleteBus = async (BusId) => {
+    return Bus.findByIdAndDelete(BusId);
 }
 
-const getBusById=async(busId)=>{
-    return Bus.findById(busId);
-}
-
-const updateDetails=async(busId,updateBody)=>{
-    return Bus.findByIdAndUpdate(busId,{$set:updateBody})
-}
-
-const deleteBus=async(busId)=>{
-    return Bus.findByIdAndDelete(busId);
-}
-
-module.exports={
+module.exports = {
     createBus,
     getBuslist,
     getBusById,

@@ -1,103 +1,120 @@
-const { groceryService } = require("../services");
+const { Groceryservice } = require("../services");
+
+/* Create Grocery*/
 
 const createGrocery = async (req, res) => {
-  try {
-    const reqBody = req.body;
-    const grocery = await groceryService.createGrocery(reqBody)
-    if (!grocery) {
-      throw new Error("Something went wrong , please try again or later !!");
+    try {
+        const reqBody = req.body;
+
+        const Grocery = await Groceryservice.createGrocery(reqBody);
+        if (!Grocery) {
+            throw new Error("Something went wrong, please try again or later!");
+        }
+        res.status(200).json({
+            success: true,
+            message: reqBody,
+            data: { reqBody },
+        });
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
     }
-    res.status(200).json({
-      success: true,
-      message: "Successfully created a new grocery",
-      data: { grocery },
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
-  }
 };
 
-const getGroceryList = async (req, res) => {
-  try {
-    const getList = await groceryService.getGroceryList(req, res);
-    if (!getList) {
-      throw new Error("grocery list found");
+/* Get Grocery*/
+
+const Grocerylist = async (req, res) => {
+    try {
+        const getGrocery = await Groceryservice.getGrocerylist();
+        res.status(200).json({
+            success: true,
+            message: "Grocery list!!",
+            data: {
+                getGrocery,
+            },
+        });
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        })
     }
-    res.status(200).json({
-      success: true,
-      message: "Get grocery list successfully!",
-      data: { getList },
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
-  }
 };
 
+/** Get Grocery details by id */
 
 const getGroceryDetails = async (req, res) => {
-  try {
-    const getDetails = await groceryService.getGroceryById(req.params.groceryId);
-    if (!getDetails) {
-      throw new Error("grocery not found!");
-    }
+    try {
+        const getDetails = await Groceryservice.getGroceryById(
+            req.params.GroceryId
+        );
+        if (!getDetails) {
+            throw new Error("Grocery not found!");
+        }
 
-    res.status(200).json({
-      success: true,
-      message: "grocery details get successfully!",
-      data: getDetails,
-    });
-  } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
-  }
+        res.status(200).json({
+            success: true,
+            message: "Grocery details get successfully!",
+            data: getDetails,
+        });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
 };
 
-const updateDetails = async (req, res) => {
-  try {
-    const groceryId = req.params.groceryId;
-    const groceryExists = await groceryService.getGroceryById(groceryId);
-    if (!groceryExists) {
-      throw new Error("grocery not found!");
+/* update Grocery */
+const updateGrocery = async (req, res) => {
+    try {
+        const GroceryId = req.params.GroceryId;
+
+        const GroceryExists = await Groceryservice.getGrocerylist(GroceryId);
+        if (!GroceryExists) {
+            throw new Error("Grocery not found!");
+        }
+
+        await Groceryservice.updateDetails(GroceryId, req.body);
+
+        res.status(200).json({
+            success: true,
+            message: "Grocery details update successfully!",
+        });
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        });
     }
-
-    await groceryService.updateDetails(groceryId, req.body);
-
-    res
-      .status(200)
-      .json({ success: true, message: "grocery details update successfully!" });
-  } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
-  }
 };
+
+/* delete Grocery */
 
 const deleteGrocery = async (req, res) => {
-  try {
-    const groceryId = req.params.groceryId;
-    if (!groceryId) {
-      throw new Error("grocery not found !");
-    }
-    await groceryService.deleteGroceryById(groceryId)
-    res.status(200).json({
-        success: true,
-        message: "grocery delete successfully!",
-      });
-  } catch (error) {
-    res.status(400).json({
-        success: false,
-        message: error.message,
-      });
-  }
-};
+    try {
+        const GroceryId = req.params.GroceryId;
+        const GroceryExists = await Groceryservice.getGrocerylist(GroceryId);
+        if (!GroceryExists) {
+            throw new Error("Category not found!");
+        }
+        await Groceryservice.deleteGrocery(GroceryId);
+
+        res.status(200).json({
+            success: true,
+            message: "Category delete successfully!",
+        });
+    }catch (error) {
+        res.status(400).json({
+          success: false,
+          message: error.message,
+        });
+      }
+}
 
 module.exports = {
     createGrocery,
-    getGroceryList,
+    Grocerylist,
     getGroceryDetails,
-    updateDetails,
+    updateGrocery,
     deleteGrocery
-};
+}

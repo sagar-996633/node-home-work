@@ -1,32 +1,36 @@
 const express = require("express");
-const {pharmacyValidation}=require("../../validations");
-const {pharmacyController}=require("../../controllers");
+const { Pharmacycontroller } = require("../../controllers");
 
-const router=express.Router();
+const router = express.Router();
 
+/** Create Pharmacy */
 router.post(
-    "/create-pharmacy",
-    pharmacyController.createPharmacy
-)
+    "/create-Pharmacy",
+    Pharmacycontroller.createPharmacy
+);
 
+/** Get Pharmacy */
 router.get(
     "/list",
-    pharmacyController.getPharmacylist
-)
+    Pharmacycontroller.Pharmacylist
+);
 
+/** Get Pharmacy details by id */
 router.get(
-    "/get-details/:pharmacyId",
-    pharmacyController.getPharmacyDetails
-  );
-  
-  router.put(
-    "/update-details/:pharmacyId",
-    pharmacyController.updateDetails
-  );
+    "/get-details/:PharmacyId",
+    Pharmacycontroller.getPharmacyDetails
+);
 
+/** update Pharmacy */
+router.put(
+    "/update-Pharmacy/:PharmacyId",
+    Pharmacycontroller.updatePharmacy
+);
+
+/** Delete Pharmacy */
 router.delete(
-    "/delete-pharmacy/:pharmacyId",
-    pharmacyController.deletePharmacyById,
-)
+    "/Delete/:PharmacyId",
+    Pharmacycontroller.deletePharmacy
+);
 
-module.exports=router;
+module.exports = router;

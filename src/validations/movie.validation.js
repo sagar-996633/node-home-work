@@ -1,15 +1,17 @@
 const joi=require("joi")
 
-/** create movie*/
-const createMovie={
+/* create Movie */
+
+const createMovie ={
     body: joi.object().keys({
-        title: joi.string().required().trim(),
-        director : joi.string().required().trim(),
-        location: joi.string().required().trim(),
-        price: joi.number().required(),
-        rating: joi.number().required(),
-        show: joi.number().required(),
-        seat: joi.string().required().trim(),
-    })
-}
-module.exports={createMovie};
+        Movie_Name: joi.string().required().trim(),
+        Ticket_buyer_name: joi.string().required().trim(),
+        Ticket_price: joi.number().required().trim(),
+        Sit_number: joi.string().required().trim(),
+        Movie_time: joi.string().required().trim(),
+    }),
+};
+
+module.exports ={
+    createMovie
+};

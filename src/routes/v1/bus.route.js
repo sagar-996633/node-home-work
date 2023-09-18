@@ -1,35 +1,35 @@
 const express = require("express");
-const { busValidation } = require("../../validations");
-const { busController } = require("../../controllers");
+const { Buscontroller } = require("../../controllers");
 
 const router = express.Router();
 
-/**create bus */
+/** Create Bus */
 router.post(
-    "/create-bus",
-     busController.createBus
+    "/create-Bus",
+    Buscontroller.createBus
 );
-
-/**get bus list */
+/** Get Bus */
 router.get(
     "/list",
-    busController.getBuslist
+    Buscontroller.Buslist
 );
 
+/** Get Bus details by id */
 router.get(
-    "/get-details/:busId",
-    busController.getBusDetails
-  );
-  
-  router.put(
-    "/update-details/:busId",
-    busController.updateDetails
-  );
-  
-/** delete bus */
+    "/get-details/:BusId",
+    Buscontroller.getBusDetails
+);
+
+/** update Bus */
+router.put(
+    "/update-Bus/:BusId",
+    Buscontroller.updateBus
+);
+
+/** Delete Bus */
 router.delete(
-    "/delete-bus/:busId",
-     busController.deleteBus
+    "/Delete/:BusId",
+    Buscontroller.deleteBus
 );
 
 module.exports = router;

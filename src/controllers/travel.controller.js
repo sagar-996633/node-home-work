@@ -1,103 +1,119 @@
-const { travelService } = require("../services");
+const { Travelservice } = require("../services");
+
+/* Create Travel*/
 
 const createTravel = async (req, res) => {
-  try {
-    const reqBody = req.body;
-    const travel = await travelService.createTravel(reqBody);
-    if (!travel) {
-      throw new Error("Error creating travel");
+    try {
+        const reqBody = req.body;
+
+        const Travel = await Travelservice.createTravel(reqBody);
+        if (!Travel) {
+            throw new Error("Something went wrong, please try again or later!");
+        }
+        res.status(200).json({
+            success: true,
+            message: reqBody,
+            data: { reqBody },
+        });
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })
     }
-    res.status(200).json({
-      success: true,
-      message: "travel created successfully",
-      data: {travel},
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
-  }
 };
 
-const getTravellist = async (req, res) => {
-  try {
-    const getlist = await travelService.getTravellist(req, res);
-    if (!getlist) {
-      throw new Error("travel list found");
+/* Get Travel*/
+
+const Travellist = async (req, res) => {
+    try {
+        const getTravel = await Travelservice.getTravellist();
+        res.status(200).json({
+            success: true,
+            message: "Travel list!!",
+            data: {
+                getTravel,
+            },
+        });
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        })
     }
-    res.status(200).json({
-      success: true,
-      message: "get travel list successfully",
-      data: {getlist},
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
-  }
 };
+
+/** Get Travel details by id */
 
 const getTravelDetails = async (req, res) => {
-  try {
-    const getDetails = await travelService.getTravelById(req.params.travelId);
-    if (!getDetails) {
-      throw new Error("travel not found!");
+    try {
+        const getDetails = await Travelservice.getTravelById(
+            req.params.TravelId
+        );
+        if (!getDetails) {
+            throw new Error("Travel not found!");
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Travel details get successfully!",
+            data: getDetails,
+        });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
     }
+  };
 
-    res.status(200).json({
-      success: true,
-      message: "travel details get successfully!",
-      data: getDetails,
-    });
-  } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
-  }
-};
+  /* update Travel */
+  const updateTravel = async (req, res) => {
+    try {
+        const TravelId = req.params.TravelId;
 
-/** travel details update by id */
-const updateDetails = async (req, res) => {
-  try {
-    const travelId = req.params.travelId;
-    const travelExists = await travelService.getTravelById(travelId);
-    if (!travelExists) {
-      throw new Error("travel not found!");
+        const TravelExists = await Travelservice.getTravellist(TravelId);
+        if (!TravelExists) {
+            throw new Error("Travel not found!");
+        }
+        await Travelservice.updateDetails(TravelId, req.body);
+        res.status(200).json({
+            success: true,
+            message: "Travel details update successfully!",
+        });
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        });
     }
+  };
 
-    await travelService.updateDetails(travelId, req.body);
 
-    res
-      .status(200)
-      .json({ success: true, message: "travel details update successfully!" });
-  } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
-  }
-};
+/* delete Travel */
 
-const deleteTravelById = async (req, res) => {
-  try {
-    const travelId = req.params.travelId;
-    if (!travelId) {
-      throw new Error("travel not found !");
-    }
-    await travelService.deleteTravelById(travelId);
-    res.status(200).json({
-      success: true,
-      message: "travel delete successfuly !",
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
+const deleteTravel = async (req, res) => {
+    try {
+        const TravelId = req.params.TravelId;
+        const TravelExists = await Travelservice.deleteTravel(TravelId);
+        if (!TravelExists) {
+            throw new Error("Travel not found!");
+        }
+        await Travelservice.deleteTravel(TravelId);
+
+        res.status(200).json({
+            success: true,
+            message: "Travel delete successfully!",
+        });
+    }catch (error) {
+        res.status(400).json({
+          success: false,
+          message: error.message,
+        });
+      }
+}
 
 module.exports = {
-  createTravel,
-  getTravellist,
-  getTravelDetails,
-  updateDetails,
-  deleteTravelById
-};
+    createTravel,
+    Travellist,
+    getTravelDetails,
+    updateTravel,
+    deleteTravel
+}

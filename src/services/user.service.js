@@ -1,26 +1,28 @@
-const { User } = require("../models");
+const { user } = require("../models");
 
-// create user
+/**
+ * Create user
+ * @param {object} reqBody
+ * @returns {Promise<user>}
+ */
 const createUser = async (reqBody) => {
-  return User.create(reqBody);
+  return user.create(reqBody);
 };
 
-//  Get user list
-const getUserList = async (req, res) => {
-  return User.find({$or:[{is_active:true}]})
+const getUserList = async(req, res)=>{
+  return user.find({$or : [{is_active : false}]});
 };
 
 const getUserById = async (userId) => {
-  return User.findById(userId);
+  return user.findById(userId);
 };
 
 const updateDetails = async (userId, updateBody) => {
-  return User.findByIdAndUpdate(userId, { $set: updateBody });
+  return user.findByIdAndUpdate(userId, { $set: updateBody });
 };
 
-// delete user
-const deleteUser = async (userId) => {
-  return User.findByIdAndDelete(userId);
+const deleteuser = async(UserId) => {
+  return user.findByIdAndDelete(UserId);
 };
 
 module.exports = {
@@ -28,5 +30,5 @@ module.exports = {
   getUserList,
   getUserById,
   updateDetails,
-  deleteUser
+  deleteuser
 };

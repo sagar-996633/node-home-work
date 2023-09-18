@@ -1,38 +1,27 @@
 const express = require("express");
-const { bookValidation } = require("../../validations");
-const { bookController } = require("../../controllers");
-// const validate = require("../../middlewares/validate");
+// const { userValidation } = require("../../validations");
+const { BookController } = require("../../controllers");
+// const validate = require("../../middlewares/validation");
 
 const router = express.Router();
 
-/** create book */
+/** create Book */
 router.post(
-  "/create-book",
-  // validate(bookValidation.createBook),
-  bookController.createBook
+  "/create-Book",
+  BookController.CreateBook
 );
 
-/** Get book list */
+/** Get Book list */
 router.get(
   "/list",
-  // validate(bookValidation.getbookList),
-  bookController.getBookList
+  BookController.Booklist
 );
 
-router.get(
-  "/get-details/:bookId",
-  bookController.getBookDetails
-);
+/** Get Book delete */
 
-router.put(
-  "/update-details/:bookId",
-  bookController.updateDetails
-);
-
-/** Delete book */
 router.delete(
-  "/delete-book/:bookId",
-  // validate(categoryValidation.getDetails),
-  bookController.deleteBook
-);
+  "/delete/:BookId",
+  BookController.deleteRecord
+)
+
 module.exports = router;

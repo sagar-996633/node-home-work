@@ -1,6 +1,7 @@
 const { categoryService } = require("../services");
 
-/** create category */
+
+/** create Category */
 const createCategory = async (req, res) => {
   try {
     const reqBody = req.body;
@@ -12,40 +13,50 @@ const createCategory = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Category create successfully!",
-      data: { category },
+      message: reqBody,
+      data: { reqBody },
     });
   } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
+    res.status(400).json({
+      success: false,
+      message: error.message
+    });
   }
 };
 
-/** Get Category list */
-const getCategoryList = async (req, res) => {
-  try {
-    const getList = await categoryService.getCategoryList(req, res);
+/** get Category */
 
+const categoryList = async (req, res) => {
+  try {
+    const getCategory = await categoryService.getCategoryList();
     res.status(200).json({
       success: true,
-      message: "Get Category list successfully!",
-      data: getList,
+      message: "Category List!",
+      data: {
+        getCategory,
+      },
     });
   } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
 
-
+/** Get Category details by id */
 const getCategoryDetails = async (req, res) => {
   try {
-    const getDetails = await categoryService.getCategoryById(req.params.categoryId);
+    const getDetails = await categoryService.getCategoryById(
+      req.params.categoryId
+    );
     if (!getDetails) {
-      throw new Error("category not found!");
+      throw new Error("Category not found!");
     }
 
     res.status(200).json({
       success: true,
-      message: "category details get successfully!",
+      message: "Category details get successfully!",
       data: getDetails,
     });
   } catch (error) {
@@ -53,31 +64,14 @@ const getCategoryDetails = async (req, res) => {
   }
 };
 
-const updateDetails = async (req, res) => {
+/** delete Category */
+
+const deleteRecord = async (req, res) => {
   try {
     const categoryId = req.params.categoryId;
-    const categoryExists = await categoryService.getCategoryById(categoryId);
-    if (!categoryExists) {
-      throw new Error("category not found!");
-    }
-
-    await categoryService.updateDetails(categoryId, req.body);
-
-    res
-      .status(200)
-      .json({ success: true, message: "category details update successfully!" });
-  } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
-  }
-};
-
-/** Delete Category */
-const deleteCategory = async (req, res) => {
-  try {
-    const categoryId = req.params.categoryId;
-    // const categoryExists = await categoryService.getCategoryById(categoryId);
-    if (!categoryId) {
-      throw new Error("category not found!");
+    const cateExists = await categoryService.getCategoryList(categoryId);
+    if (!cateExists) {
+      throw new Error("Category not found!");
     }
 
     await categoryService.deleteCategory(categoryId);
@@ -87,13 +81,42 @@ const deleteCategory = async (req, res) => {
       message: "Category delete successfully!",
     });
   } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
+
+
+const updatecategory = async (req, res) => {
+  try {
+    const categoryId = req.params.categoryId;
+
+    const cateExists = await categoryService.getCategoryList(categoryId);
+    if (!cateExists) {
+      throw new Error("Category not found!");
+    }
+
+    await categoryService.updateDetails(categoryId, req.body);
+
+    res.status(200).json({
+      success: true,
+      message: "Category details update successfully!",
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+
 module.exports = {
   createCategory,
-  getCategoryList,
+  categoryList,
   getCategoryDetails,
-  updateDetails,
-  deleteCategory,
+  deleteRecord,
+  updatecategory
 };

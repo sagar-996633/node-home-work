@@ -1,12 +1,17 @@
 const joi=require("joi")
 
-/** create  grocery*/
-const createGrocery={
+/* create Grocery */
+
+const createGrocery ={
     body: joi.object().keys({
-        name: joi.string().required().trim(),
-        category : joi.string().required().trim(),
-        price: joi.number().required(),
-        quantity: joi.number().required(),
-    })
-}
-module.exports={createGrocery};
+        Store_Name: joi.string().required().trim(),
+        Buyer_Name: joi.string().required().trim(),
+        Phone_Number: joi.number().integer().trim(),
+        Totle_Product: joi.number().integer().trim(),
+        Totle_Price: joi.number().integer().trim(),
+    }),
+};
+
+module.exports ={
+    createGrocery
+};

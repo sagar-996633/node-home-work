@@ -1,33 +1,36 @@
 const express = require("express");
-const {travelValidation}=require("../../validations");
-const {travelController}=require("../../controllers");
+const { Travelcontroller } = require("../../controllers");
 
-const router=express.Router();
+const router = express.Router();
 
+/** Create Travel */
 router.post(
-    "/create-travel",
-    travelController.createTravel
-)
+    "/create-Travel",
+    Travelcontroller.createTravel
+);
 
+/** Get Travel */
 router.get(
     "/list",
-    travelController.getTravellist
-)
+    Travelcontroller.Travellist
+);
 
+/** Get Travel details by id */
 router.get(
-  "/get-details/:travelId",
-  travelController.getTravelDetails
+    "/get-details/:TravelId",
+    Travelcontroller.getTravelDetails
 );
 
+/** update Travel */
 router.put(
-  "/update-details/:travelId",
-  travelController.updateDetails
+    "/update-Travel/:TravelId",
+    Travelcontroller.updateTravel
 );
 
-
+/** Delete Travel */
 router.delete(
-    "/delete-travel/:travelId",
-    travelController.deleteTravelById,
-)
+    "/Delete/:TravelId",
+    Travelcontroller.deleteTravel
+);
 
-module.exports=router;
+module.exports = router;

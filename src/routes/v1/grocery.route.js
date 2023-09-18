@@ -1,32 +1,36 @@
 const express = require("express");
-const {groceryValidation}=require("../../validations");
-const {groceryController}=require("../../controllers");
+const { Grocerycontroller } = require("../../controllers");
 
-const router=express.Router();
+const router = express.Router();
 
+/** Create Grocery */
 router.post(
-    "/create-grocery",
-    groceryController.createGrocery
-)
+    "/create-Grocery",
+    Grocerycontroller.createGrocery
+);
 
+/** Get Grocery */
 router.get(
     "/list",
-    groceryController.getGroceryList
-)
+    Grocerycontroller.Grocerylist
+);
 
+/** Get Grocery details by id */
 router.get(
-    "/get-details/:groceryId",
-    groceryController.getGroceryDetails
-  );
-  
-  router.put(
-    "/update-details/:groceryId",
-    groceryController.updateDetails
-  );
+    "/get-details/:GroceryId",
+    Grocerycontroller.getGroceryDetails
+);
 
+/** update Grocery */
+router.put(
+    "/update-Grocery/:GroceryId",
+    Grocerycontroller.updateGrocery
+);
+
+/** Delete Grocery */
 router.delete(
-    "/delete-grocery/:groceryId",
-    groceryController.deleteGrocery,
-)
+    "/Delete/:groceryId",
+    Grocerycontroller.deleteGrocery
+);
 
-module.exports=router;
+module.exports = router;

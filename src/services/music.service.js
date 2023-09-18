@@ -1,29 +1,35 @@
-const {Music}=require("../models")
+const{ Music } = require("../models");
 
-const createMusic=async(reqBody)=>{
-    return Music.create(reqBody)
-}
+/** 
+ * create Music
+ * @param {object}reqBody
+ * @returns {Promise<Music>}
+*/
 
-const getMusicList=async(req,res)=>{
-    return Music.find({$or:[{is_active:true}]});
-}
+const createMusic = async(reqBody) => {
+    return Music.create(reqBody);
+};
+
+const getMusiclist = async(req , res) => {
+    return Music.find({$or: [{Singer_Name :"jestin_baiber" }]});
+};
 
 const getMusicById = async (MusicId) => {
     return Music.findById(MusicId);
-  };
+};
 
 const updateDetails = async (MusicId, updateBody) => {
     return Music.findByIdAndUpdate(MusicId, { $set: updateBody });
-  };
+};
 
-const deleteMusicById=async(MusicId)=>{
-    return Music.findByIdAndDelete(MusicId)
-}
+const deleteMusic = async(MusicId) => {
+    return Music.findByIdAndDelete(MusicId);
+};
 
-module.exports={
+module.exports ={
     createMusic,
-    getMusicList,
+    getMusiclist,
     getMusicById,
     updateDetails,
-    deleteMusicById
-};
+    deleteMusic
+}

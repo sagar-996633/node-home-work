@@ -1,45 +1,38 @@
+const { string } = require('joi');
 const mongoose = require('mongoose');
 
-const travelSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true
-  },
-  destination: {
-    type: String,
-    trim: true
-  },
-  startDate: {
-    type: Date,
-    trim: true
-  },
-  endDate: {
-    type: Date,
-    trim: true
-  },
-  budget: {
-    type: Number,
-    trim: true
-  },
-  travelers: {
-    type: Number,
-    trim: true
-  },
-  bus:{
-    type:mongoose.Types.ObjectId,
-    ref:"Bus"
-  },
-  is_active: {
-    type: Boolean,
-    default: true,
-  },
-},
-{
-  timestamps: true,
-  versionKey: false,
+const TravelSchema = new mongoose.Schema(
+    {
+        Travel_Type: {
+            type: String,
+            trim: true,
+        },
+        Travel_From: {
+            type: String,
+            trim: true,
+        },
+        Travel_To: {
+            type: String,
+            trim: true,
+        },
+        Travel_Date: {
+            type: String,
+            trim: true,
+        },
+        Travel_Return: {
+            type: String,
+            trim: true,
+        },
+        Bus: {
+            type: mongoose.Types.ObjectId,
+            ref: "Bus"
+        },
+    },
+    {
+        timestamps: true,
+        versionKey: false,
+    }
+);
 
-});
-
-const Travel = mongoose.model('Travel', travelSchema);
-
-module.exports = Travel;
+const Travel = mongoose.model("Travel", TravelSchema)
+module.exports = Travel

@@ -1,13 +1,17 @@
-const joi=require("joi")
+const joi =require("joi")
 
-/** creatr Product */
-const createProduct={
+/** create product */
+const createproduct = {
     body: joi.object().keys({
-        product_name: joi.string().required().trim(),
-        product_desc: joi.string().required().trim(),
-        price: joi.number().required(),
-        quality : joi.string().required().trim(),
-        stock: joi.number().required(),
-    })
-}
-module.exports={createProduct};
+      Product_name: joi.string().required().trim(),
+      Product_desc: joi.string().required().trim(),
+      Product_price: joi.number().integer().required(),
+      Product_category: joi.string().required().trim(),
+      Product_quality: joi.string().required().trim(),
+      Product_stock: joi.number().integer().required(),
+    }),
+  };
+
+  module.exports = {
+    createproduct
+  };

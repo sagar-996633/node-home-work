@@ -1,32 +1,36 @@
 const express = require("express");
-const {musicValidation}=require("../../validations");
-const {musicController}=require("../../controllers");
+const { Musiccontroller } = require("../../controllers");
 
-const router=express.Router();
+const router = express.Router();
 
+/** Create Music */
 router.post(
-    "/create-music",
-    musicController.createMusic
-)
+    "/create-Music",
+    Musiccontroller.createMusic
+);
 
+/** Get Music */
 router.get(
     "/list",
-    musicController.getMusicList
-)
+    Musiccontroller.Musiclist
+);
 
+/** Get Music details by id */
 router.get(
-    "/get-details/:musicId",
-    musicController.getMusicDetails
-  );
-  
-  router.put(
-    "/update-details/:musicId",
-    musicController.updateDetails
-  );
-  
-router.delete(
-    "/delete-music/:musicId",
-    musicController.deleteMusicById,
-)
+    "/get-details/:MusicId",
+    Musiccontroller.getMusicDetails
+);
 
-module.exports=router;
+/** update Music */
+router.put(
+    "/update-Music/:MusicId",
+    Musiccontroller.updateMusic
+);
+
+/** Delete Music */
+router.delete(
+    "/Delete/:MusicId",
+    Musiccontroller.deleteMusic
+);
+
+module.exports = router;

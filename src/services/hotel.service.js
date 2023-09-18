@@ -1,29 +1,35 @@
-const { Hotel } = require("../models");
+const{ Hotel } = require("../models");
 
-const createHotel = async (reqBody) => {
-  return Hotel.create(reqBody);
+/**
+ * create Hotel
+ * @param {object}reqBody
+ * @returns {Promise<Hotel>}
+*/
+
+const createHotel = async(reqBody) => {
+    return Hotel.create(reqBody);
 };
 
-const getHotelslist = async (req, res) => {
-  return Hotel.find({$or:[{is_active:true}]});
+const getHotellist = async(req , res) => {
+    return Hotel.find({$or: [{Customer_name :"rushit" }]});
 };
 
-const getHotelById = async (hotelId) => {
-  return Hotel.findById(hotelId);
+const getHotelById = async (HotelId) => {
+    return Hotel.findById(HotelId);
 };
 
-const updateDetails = async (hotelId, updateBody) => {
-  return Hotel.findByIdAndUpdate(hotelId, { $set: updateBody });
+const updateDetails = async (HotelId, updateBody) => {
+    return Hotel.findByIdAndUpdate(HotelId, { $set: updateBody });
 };
 
-const deleteHotel = async (hotelId) => {
-  return Hotel.findByIdAndDelete(hotelId);
+const deleteHotel = async(HotelId) => {
+    return Hotel.findByIdAndDelete(HotelId);
 };
 
-module.exports = {
-  createHotel,
-  getHotelslist,
-  getHotelById,
-  updateDetails,
-  deleteHotel,
-};
+module.exports ={
+    createHotel,
+    getHotellist,
+    getHotelById,
+    updateDetails,
+    deleteHotel
+}

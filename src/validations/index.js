@@ -1,14 +1,16 @@
 module.exports.userValidation = require("./user.validation");
 module.exports.categoryValidation = require("./category.validation");
-module.exports.bookValidation = require("./book.validation");
-module.exports.busValidation=require("./bus.validation");
-module.exports.hotelValidation=require("./hotel.validation");
-module.exports.stationeryValidation=require("./stationery.validation");
-module.exports.schoolValidation=require("./school.validation");
-module.exports.travelValidation=require("./travel.validation");
-module.exports.pharmacyValidation=require("./pharmacy.validation");
-module.exports.jewelryValidation=require("./jewelry.validation");
-module.exports.movieValidation=require("./movie.validation");
-module.exports.musicValidation=require("./music.validation");
-module.exports.groceryValidation=require("./grocery.validation");
-module.exports.movieValidation=require("./mobile.validation");
+module.exports.ProductValidation = require("./product.validation");
+module.exports.BookValidation = require("./Book.validation");
+module.exports.Groceryvalidation = require("./Grocery.validation");
+module.exports.Musicvalidation = require("./Music.validation");
+module.exports.Movievalidation = require("./Movie.validation");
+module.exports.Jewelleryvalidation = require("./Jewellery.validation");
+module.exports.Hotelvalidation = require("./Hotel.validation");
+module.exports.Stationaryvalidation = require("./Stationary.validation");
+module.exports.Busvalidation = require("./Bus.validation");
+module.exports.Pharmacyvalidation = require("./Pharmacy.validation");
+module.exports.Travelvalidation = require("./Travel.validation");
+module.exports.Schoolvalidation = require("./School.validation");
+
+

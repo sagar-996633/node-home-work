@@ -1,29 +1,35 @@
-const {grocery}=require("../models")
+const{ Grocery } = require("../models");
 
-const createGrocery=async(reqBody)=>{
-    return grocery.create(reqBody)
+/** 
+ * create Grocery
+ * @param {object}reqBody
+ * @returns {Promise<Grocery>}
+*/
+
+const createGrocery = async(reqBody) => {
+    return Grocery.create(reqBody);
+};
+
+const getGrocerylist = async(req , res) => {
+    return Grocery.find();
 }
 
-const getGroceryList=async(req,res)=>{
-    return grocery.find({$or:[{is_active:true}]});
+const getGroceryById = async (GroceryId) => {
+    return Grocery.findById(GroceryId);
+};
+
+const updateDetails = async (GroceryId, updateBody) => {
+    return Grocery.findByIdAndUpdate(GroceryId, { $set: updateBody });
+};
+
+const deleteGrocery = async(GroceryId) => {
+    return Grocery.findByIdAndDelete(GroceryId);
 }
 
-const getGroceryById=async(groceryId)=>{
-    return grocery.findById(groceryId)
-}
-
-const updateDetails=async(groceryId,updateBody)=>{
-    return grocery.findByIdAndUpdate(groceryId,{$set:updateBody})
-}
-
-const deleteGroceryById=async(groceryId)=>{
-    return grocery.findByIdAndDelete(groceryId)
-}
-
-module.exports={
+module.exports ={
     createGrocery,
-    getGroceryList,
+    getGrocerylist,
     getGroceryById,
     updateDetails,
-    deleteGroceryById
-};
+    deleteGrocery
+}

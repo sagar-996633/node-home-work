@@ -1,16 +1,17 @@
-const joi = require("joi");
+const joi=require("joi")
 
-const createSchool = {
-  body: joi.object().keys({
-    name: joi.string().required().trim(),
-    location: joi.string().required().trim(),
-    foundedYear: joi.string().required().trim(),
-    studentCount: joi.number().required(),
-    teachersCount: joi.number().required(),
-    website: joi.string().required().trim(),
-    Email: joi.string().required().trim(),
-    phoneNumber: joi.number().required(),
-  }),
+/* create School */
+
+const createSchool ={
+    body: joi.object().keys({
+        School_name: joi.string().required().trim(),
+        Student_name: joi.string().required().trim(),
+        Student_id: joi.string().required().trim(),
+        Student_std: joi.number().required().trim(),
+        is_active: joi.string().required().trim(),
+    }),
 };
 
-module.exports = { createSchool };
+module.exports ={
+    createSchool
+};

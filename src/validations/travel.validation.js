@@ -1,14 +1,17 @@
 const joi=require("joi")
 
-/** creatr travel */
-const createTravel={
+/* create Travel */
+
+const createTravel ={
     body: joi.object().keys({
-        name: joi.string().required().trim(),
-        destination : joi.string().required().trim(),
-        startDate: joi.date().required,
-        endDate: joi.date().required,
-        budget: joi.number().required(),
-        travelers: joi.number().required(),
-    })
-}
-module.exports={createTravel};
+        Travel_Type: joi.string().required().trim(),
+        Travel_From: joi.string().required().trim(),
+        Travel_To: joi.string().required().trim(),
+        Travel_Date: joi.string().required().trim(),
+        Travel_Return: joi.string().required().trim(),
+    }),
+};
+
+module.exports ={
+    createTravel
+};

@@ -1,38 +1,26 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const bookSchema = new mongoose.Schema(
-  {
-    book_name: {
-      type: String,
-      trim: true,
+const BookSchema = new mongoose.Schema(
+    {
+        Book_name: {
+            type: String,
+            trim: true,
+        },
+        Book_decs: {
+            type: String,
+            trim: true,
+        },
+        Book_price:{
+            type:Number,
+            default:true,
+        }
     },
-    book_author: {
-      type: String,
-      trim: true,
-    },
-    book_title:{
-        type:String,
-        trim:true,
-    },
-    book_desc:{
-        type: String,
-        trim:true,
-    },
-    book_price:{
-        type: Number,
-        trim:true,
-    },
-    is_active: {
-      type: Boolean,
-    default: true,
-    },
-  },
-  {
-    timestamps: true,
-    versionKey: false,
-  }
+    {
+        timestamps:true,
+        versionKey:false,
+    }
 );
 
-const Book = mongoose.model("Book",bookSchema)
+const Book=mongoose.model("Book",BookSchema)
 
-module.exports = Book
+module.exports=Book

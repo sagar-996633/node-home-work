@@ -1,14 +1,18 @@
-const joi =require("joi");
+const joi=require("joi")
 
-/** creatr hotel */
-const createHotel={
+/* create Hotel */
+
+const createHotel ={
     body: joi.object().keys({
-        name: joi.string().required().trim(),
-        address : joi.string().required().trim(),
-        rating: joi.number().required(),
-        table: joi.number().required(),
-        room:joi.number().required(),
-        location: joi.string().required().trim()
-    })
-}
-module.exports={createHotel};
+        Hotel_Name: joi.string().required().trim(),
+        Customer_name: joi.string().required().trim(),
+        Room_number: joi.number().required().trim(),
+        Hotel_address: joi.string().required().trim(),
+        customer_checkin: joi.string().required().trim(),
+        customer_checkout: joi.string().required().trim(),
+    }),
+};
+
+module.exports ={
+    createHotel
+};

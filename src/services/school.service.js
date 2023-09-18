@@ -1,29 +1,35 @@
-const {School}=require("../models")
+const { School } = require("../models");
 
-const createSchool=async(reqBody)=>{
-    return School.create(reqBody)
+/**
+ * create Stationary
+ * @param {object}reqBody
+ * @returns {Promise<School>}
+*/
+
+const createSchool = async (reqBody) => {
+    return School.create(reqBody);
+};
+
+const getSchoollist = async (req, res) => {
+    return School.find({ $or: [{ School_name: "ashadeep-iit" }] });
 }
 
-const getSchoolList=async(req,res)=>{
-    return School.find({$or:[{is_active:true}]});
+const getSchoolById = async (SchoolId) => {
+    return School.findById(SchoolId);
+};
+
+const updateDetails = async (SchoolId, updateBody) => {
+    return School.findByIdAndUpdate(SchoolId, { $set: updateBody });
+};
+
+const deleteSchool = async (SchoolId) => {
+    return School.findByIdAndDelete(SchoolId);
 }
 
-const getSchoolById = async (schoolId) => {
-    return School.findById(schoolId);
-  };
-
-const updateDetails = async (schoolId, updateBody) => {
-    return School.findByIdAndUpdate(schoolId, { $set: updateBody });
-  };
-
-const deleteSchool=async(schoolId)=>{
-    return School.findByIdAndDelete(schoolId)
-}
-
-module.exports={
+module.exports = {
     createSchool,
-    getSchoolList,
+    getSchoollist,
     getSchoolById,
     updateDetails,
     deleteSchool
-};
+}

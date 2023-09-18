@@ -1,15 +1,18 @@
-const joi =require("joi");
+const joi=require("joi")
 
-/** creatr bus */
-const createBus={
+/* create Bus */
+
+const createBus ={
     body: joi.object().keys({
-        registrationNumber: joi.string().required().trim(),
-        bus_name : joi.string().required().trim(),
-        model: joi.string().required().trim(),
-        seatingCapacity: joi.number().required(),
-        manufacturer:joi.string().required().trim(),
-        yearOfManufacture: joi.number().required(),
-        driverName: joi.string().required().trim()
-    })
-}
-module.exports={createBus};
+        Bus_Name: joi.string().required().trim(),
+        Buyer_Name: joi.string().required().trim(),
+        Bus_number: joi.number().required().trim(),
+        Ticket_price: joi.number().required().trim(),
+        Sit_number: joi.string().required().trim(),
+        Bus_time: joi.string().required().trim(),
+    }),
+};
+
+module.exports ={
+    createBus
+};

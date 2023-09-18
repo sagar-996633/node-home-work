@@ -1,49 +1,34 @@
-const mongoose = require("mongoose");
+const { string } = require('joi');
+const mongoose = require('mongoose');
 
-const schoolSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true
-  },
-  location: {
-    type: String,
-    trim: true
-  },
-  foundedYear: {
-    type: Number,
-    trim: true
-  },
-  studentCount: {
-    type: Number,
-    trim: true
-  },
-  teachersCount: {
-      type: String,
-    trim: true
-},
-  website: {
-    type:String,
-    trim: true
-  },
+const SchoolSchema = new mongoose.Schema(
+    {
+        School_name: {
+            type: String,
+            trim: true,
+        },
+        Student_name: {
+            type: String,
+            trim: true,
+        },
+        Student_id: {
+            type: String,
+            trim: true,
+        },
+        Student_std: {
+            type: Number,
+            trim: true,
+        },
+        is_active: {
+            type: Boolean,
+            default: true,
+        },
+    },
+    {
+        timestamps: true,
+        versionKey: false,
+    }
+);
 
-  Email:{
-    type : String ,
-    trim: true
-  },
-  phoneNumber:{
-    type:Number,
-    trim: true
-},
-is_active: {
-  type: Boolean,
-  default: true,
-},
-},
-{
-timestamps: true,
-versionKey: false,
-});
-
-const School = mongoose.model('School', schoolSchema);
-
-module.exports = School;
+const School = mongoose.model("School", SchoolSchema)
+module.exports = School

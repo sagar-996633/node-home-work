@@ -1,15 +1,14 @@
-const Joi = require("joi");
+const joi =require("joi")
 
-/** create book */
-const createBook = {
-  body: Joi.object().keys({
-    book_name: Joi.string().required().trim(),
-    book_author: Joi.string().required().trim(),
-    book_title: Joi.string().required().trim(),
-    book_desc: Joi.string().required().trim(),
-    book_price: Joi.string().required().trim()
-  }),
-};
-module.exports = {
-    createBook,
-};
+/** create user */
+const CreateBook = {
+    body: joi.object().keys({
+        Book_name: joi.string().required().trim(),
+        Book_decs: joi.string().required().trim(),
+        Book_price: joi.number().required().trim(),
+    }),
+  };
+
+  module.exports = {
+    CreateBook
+  };

@@ -1,41 +1,38 @@
 const express = require("express");
+// const tokenRoutes = require("./Token.route");
 const userRoute = require("./user.route");
 const categoryRoute = require("./category.route");
 const productRoute = require("./product.route");
-const bookRoute=require("./book.route");
-const busRoute = require("./bus.route");
-const hotelRoute=require("./hotel.route");
-const stationeryRoute=require("./stationery.route");
-const schoolRoute=require("./school.route");
-const travelRoute=require("./travel.route");
-const pharmacyRoute=require("./pharmacy.route");
-const jewelryRoute=require("./jewelry.route");
-const movieRoute=require("./movie.route");
-const musicRoute=require("./music.route");
-const groceryRoute=require("./grocery.route");
-const mobileRoute=require("./mobile.route");
-
+const BookRoute = require("./book.route");
+const GroceryRoute = require("./Grocery.route");
+const MusicRoute = require("./Music.route");
+const MovieRoute = require("./Movie.route");
+const JewelleryRoute = require("./Jewellery.route");
+const HotelRoute = require("./Hotel.route");
+const StationaryRoute = require("./Stationary.route");
+const BusRoute = require("./Bus.route");
+const PharmacyRoute = require("./Pharmacy.route");
+const TravelRoute = require("./Travel.route");
+const SchoolRoute = require("./School.route");
+const ecommerceRoute=require("./e-commerce.route");
 
 const router = express.Router();
 
+// router.use("/token", tokenRoutes);
 router.use("/user", userRoute);
-router.use("/category", categoryRoute);
 router.use("/product", productRoute);
-router.use("/book",bookRoute)
-router.use("/bus", busRoute);
-router.use("/hotel",hotelRoute);
-router.use("/stationery",stationeryRoute);
-router.use('/school',schoolRoute);
-router.use("/travel", travelRoute);
-router.use("/pharmacy", pharmacyRoute);
-router.use("/jewelry", jewelryRoute);
-router.use("/movie", movieRoute);
-router.use("/music", musicRoute);
-router.use("/grocery", groceryRoute);
-router.use("/mobile", mobileRoute);
+router.use("/category", categoryRoute);
+router.use("/Book", BookRoute);
+router.use("/Grocery",GroceryRoute);
+router.use("/Music",MusicRoute);
+router.use("/Movie",MovieRoute);
+router.use("/Jewellery",JewelleryRoute);
+router.use("/Hotel",HotelRoute);
+router.use("/Stationary",StationaryRoute);
+router.use("/Bus",BusRoute);
+router.use("/Pharmacy",PharmacyRoute);
+router.use("/Travel",TravelRoute);
+router.use("/School",SchoolRoute);
+router.use("/e-commerce",ecommerceRoute);
 
 module.exports = router;
-
-
-
-

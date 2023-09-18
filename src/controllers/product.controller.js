@@ -1,102 +1,113 @@
-const { productService } = require("../services");
+const { productService} = require("../services");
 
+/** create product */
 const createProduct = async (req, res) => {
   try {
     const reqBody = req.body;
+    // const productExists = await productService.getproductByEmail(reqBody.email);
+    // if (productExists) {
+    //   throw new Error("product already created by this email!");
+    // }
+
     const product = await productService.createProduct(reqBody);
     if (!product) {
-      throw new Error("Error creating product");
+      throw new Error("Something went wrong, please try again or later!");
     }
+
     res.status(200).json({
       success: true,
-      message: "product created successfully",
+      message:'product Create Successfully',
       data: { product },
     });
   } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
+    res.status(400).json({ success: false, message: error.message });
   }
 };
 
-const getProductlist = async (req, res) => {
+/** get product list */
+const getProductList = async (req, res) => {
   try {
-    const getlist = await productService.getProductlist(req, res);
-    if (!getlist) {
-      throw new Error("product list found");
-    }
-    res.status(200).json({
-      success: true,
-      message: "get product list successfully",
-      data: { getlist },
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
-
-const getProductDetails = async (req, res) => {
-  try {
-    const getDetails = await productService.getProductById(req.params.productId);
-    if (!getDetails) {
-      throw new Error("product not found!");
-    }
+    const getList = await productService.getProductList(req, res);
 
     res.status(200).json({
       success: true,
-      message: "product details get successfully!",
-      data: getDetails,
+      message: "Get user list successfully!",
+      data: getList,
     });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
 };
 
-const updateDetails = async (req, res) => {
+/** Get Product details by id */
+
+const getproductDetails = async (req, res) => {
   try {
-    const productId = req.params.productId;
-    const productExists = await productService.getProductById(productId);
-    if (!productExists) {
-      throw new Error("product not found!");
-    }
+      const getDetails = await productService.getproductById(
+          req.params.ProductId
+      );
+      if (!getDetails) {
+          throw new Error("Product not found!");
+      }
 
-    await productService.updateDetails(productId, req.body);
-
-    res
-      .status(200)
-      .json({ success: true, message: "product details update successfully!" });
+      res.status(200).json({
+          success: true,
+          message: "Product details get successfully!",
+          data: getDetails,
+      });
   } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
+      res.status(400).json({ success: false, message: error.message });
   }
 };
 
-const deleteProductById = async (req, res) => {
+/* update Product */
+const updateproduct = async (req, res) => {
+  try {
+      const productId = req.params.productId;
+
+      const ProductExists = await productService.getProductList(productId);
+      if (!ProductExists) {
+          throw new Error("Product not found!");
+      }
+
+      await productService.updateDetails(productId, req.body);
+
+      res.status(200).json({
+          success: true,
+          message: "Product details update successfully!",
+      });
+  } catch (error) {
+      res.status(400).json({
+          success: false,
+          message: error.message,
+      });
+  }
+};
+
+/** Delete product */
+const deleteproduct = async (req, res) => {
   try {
     const productId = req.params.productId;
+    // const userExists = await userService.getUserById(userId);
     if (!productId) {
-      throw new Error("product not found !");
+      throw new Error("Product not found!");
     }
-    await productService.deleteProductById(productId);
+
+    await productService.deleteproduct(productId);
+
     res.status(200).json({
       success: true,
-      message: "product delete successfuly !",
+      message: "Product delete successfully!",
     });
   } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: error.message,
-    });
+    res.status(400).json({ success: false, message: error.message });
   }
 };
 
 module.exports = {
   createProduct,
-  getProductlist,
-  getProductDetails,
-  updateDetails,
-  deleteProductById,
+  getProductList,
+  getproductDetails,
+  updateproduct,
+  deleteproduct
 };

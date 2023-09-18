@@ -1,28 +1,35 @@
-const {Pharmacy}=require("../models")
+const{ Pharmacy } = require("../models");
 
-const createPharmacy=async(reqBody)=>{
+/**
+ * create Pharmacy
+ * @param {object}reqBody
+ * @returns {Promise<Pharmacy>}
+*/
+
+const createPharmacy = async(reqBody) => {
     return Pharmacy.create(reqBody);
-}
+};
 
-const getPharmacylist=async(req,res)=>{
-    return Pharmacy.find({$or:[{is_active:true}]});
-}
+const getPharmacylist = async(req , res) => {
+    return Pharmacy.find({$or: [{Madicine_name :"dolo" }]});
+};
 
-const getPharmacyById = async (pharmacyId) => {
-    return Pharmacy.findById(pharmacyId);
-  };
-  
-  const updateDetails = async (pharmacyId, updateBody) => {
-    return Pharmacy.findByIdAndUpdate(pharmacyId, { $set: updateBody });
-  };
+const getPharmacyById = async (PharmacyId) => {
+    return Pharmacy.findById(PharmacyId);
+};
 
-const deletePharmacyById=async(pharmacyId)=>{
-    return Pharmacy.findByIdAndDelete(pharmacyId)
-}
-module.exports={
+const updateDetails = async (PharmacyId, updateBody) => {
+    return Pharmacy.findByIdAndUpdate(PharmacyId, { $set: updateBody });
+};
+
+const deletePharmacy = async(PharmacyId) => {
+    return Pharmacy.findByIdAndDelete(PharmacyId);
+};
+
+module.exports ={
     createPharmacy,
     getPharmacylist,
     getPharmacyById,
     updateDetails,
-    deletePharmacyById
+    deletePharmacy
 }

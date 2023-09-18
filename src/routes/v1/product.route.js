@@ -1,32 +1,41 @@
 const express = require("express");
-const {productValidation}=require("../../validations");
-const {productController}=require("../../controllers");
+// const { userValidation } = require("../../validations");
+const { productController } = require("../../controllers");
+// const validate = require("../../middlewares/validation");
 
-const router=express.Router();
+const router = express.Router();
 
+/** create product */
 router.post(
-    "/create-product",
-    productController.createProduct
-)
+  "/create-product",
+  // validate(productValidation.createproduct),
+  productController.createProduct
+);
 
+/** Get product list */
 router.get(
-    "/list",
-    productController.getProductlist
-)
+  "/list",
+  // validate(productValidation.getproductList),
+  productController.getProductList
+);
 
+/** Get product details by id */
 router.get(
-    "/get-details/:productId",
-    productController.getProductDetails
-  );
-  
-  router.put(
-    "/update-details/:productId",
-    productController.updateDetails
-  );
+  "/get-details/:productId",
+  productController.getproductDetails
+);
 
+/** update product */
+router.put(
+  "/update-product/:productId",
+  productController.updateproduct
+);
+
+/**  Delete product */
 router.delete(
-    "/delete-product/:productId",
-    productController.deleteProductById,
-)
+  "/delete-product/:productId",
+  // validate(productValidation.getproductList),
+  productController.deleteproduct
+);
 
-module.exports=router;
+module.exports = router;

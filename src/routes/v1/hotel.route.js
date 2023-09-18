@@ -1,26 +1,36 @@
 const express = require("express");
-const { hotelValidation } = require("../../validations");
-const { hotelController } = require("../../controllers");
+const { Hotelcontroller } = require("../../controllers");
 
 const router = express.Router();
 
-/** create hotel */
-router.post("/create-hotel", hotelController.createHotel);
+/** Create Hotel */
+router.post(
+    "/create-Hotel",
+    Hotelcontroller.createHotel
+);
 
-/** hotel list */
-router.get("/list", hotelController.getHotelslist);
-
+/** Get Hotel */
 router.get(
-    "/get-details/:hotelId",
-    hotelController.getHotelDetails
-  );
-  
-  router.put(
-    "/update-details/:hotelId",
-    hotelController.updateDetails
-  );
+    "/list",
+    Hotelcontroller.Hotellist
+);
 
-/** delete hotel */
-router.delete("/delete-hotel/:hotelId", hotelController.deleteHotel);
+/** Get Hotel details by id */
+router.get(
+    "/get-details/:HotelId",
+    Hotelcontroller.getHotelDetails
+);
+
+/** update Hotel */
+router.put(
+    "/update-Hotel/:HotelId",
+    Hotelcontroller.updateHotel
+);
+
+/** Delete Hotel */
+router.delete(
+    "/Delete/:HotelId",
+    Hotelcontroller.deleteHotel
+);
 
 module.exports = router;

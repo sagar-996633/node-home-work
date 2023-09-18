@@ -1,28 +1,35 @@
-const {Travel}=require("../models")
+const{ Travel } = require("../models");
 
-const createTravel=async(reqBody)=>{
+/**
+ * create Stationary
+ * @param {object}reqBody
+ * @returns {Promise<Travel>}
+*/
+
+const createTravel = async(reqBody) => {
     return Travel.create(reqBody);
+};
+
+const getTravellist = async(req , res) => {
+    return Travel.find({$or: [{Travel_From :"surat" }]});
 }
 
-const getTravellist=async(req,res)=>{
-    return Travel.find({$or:[{is_active:true}]});
+const getTravelById = async (TravelId) => {
+    return Travel.findById(TravelId);
+};
+
+const updateDetails = async (TravelId, updateBody) => {
+    return Travel.findByIdAndUpdate(TravelId, { $set: updateBody });
+};
+
+const deleteTravel = async(TravelId) => {
+    return Travel.findByIdAndDelete(TravelId);
 }
 
-const getTravelById = async (travelId) => {
-    return Travel.findById(travelId);
-  };
-  
-  const updateDetails = async (travelId, updateBody) => {
-    return Travel.findByIdAndUpdate(travelId, { $set: updateBody });
-  };
-
-const deleteTravelById=async(travelId)=>{
-    return Travel.findByIdAndDelete(travelId)
-}
-module.exports={
+module.exports ={
     createTravel,
     getTravellist,
     getTravelById,
     updateDetails,
-    deleteTravelById
+    deleteTravel
 }
